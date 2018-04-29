@@ -17,8 +17,12 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "buefy": "^0.6.5",
         "bulma": "^0.7.1",
+        "js-cookie": "^2.2.0",
+        "vue-meta": "^1.5.0",
         "vue-router": "^3.0.1",
-        "vuex": "^3.0.1"
+        "vuex": "^3.0.1",
+        "vuex-router-sync": "^5.0.0"
     }
 }

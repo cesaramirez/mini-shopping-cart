@@ -1,3 +1,3 @@
 import Home from "~/pages/home";
 
-export default [{ path: "/home", name: "home", component: Home }];
+export default [{ path: "/", name: "home", component: Home }];

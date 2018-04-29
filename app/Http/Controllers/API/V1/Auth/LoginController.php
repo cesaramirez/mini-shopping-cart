@@ -15,7 +15,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except(['logout', 'me']);
     }
 
     /**
@@ -64,7 +64,7 @@ class LoginController extends Controller
      */
     public function me()
     {
-        return response()->json($this->guard()->user());
+        return response()->json(auth()->user());
     }
 
     /**
