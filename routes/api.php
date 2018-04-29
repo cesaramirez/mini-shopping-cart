@@ -14,3 +14,9 @@ $router->namespace('API\V1\Auth')
                $router->post('me', 'LoginController@me');
            });
        });
+
+$router->namespace('API\V1')
+       ->prefix('v1')
+       ->group(function ($router) {
+           $router->get('products', 'ProductsController@index');
+       });
