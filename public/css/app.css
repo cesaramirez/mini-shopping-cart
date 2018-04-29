@@ -11515,6 +11515,44 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.pin-b {
+  bottom: 0;
+}
+
+.pin-r {
+  right: 0;
+}
+
+.m-1 {
+  margin: 1rem;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.justify-between {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.items-end {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
 html,
 body {
   font-family: "Poppins", sans-serif;
@@ -11529,6 +11567,7 @@ body {
 
 nav.navbar {
   border-top: 6px solid #276cda;
+  margin-bottom: 2rem;
 }
 
 .navbar-item.brand-text {
@@ -11660,5 +11699,25 @@ p {
 
 p.subtitle {
   padding-top: 1rem;
+}
+
+.colors {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.color-selector {
+  height: 35px;
+  width: 35px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5rem;
+  border: 2px solid grey;
+}
+
+.color-selector.active {
+  border: 5px solid #3273dc;
 }
 

@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins:400,500,700);
 
 @import "~bulma";
+@import "utilities";
 
 html,
 body {
@@ -16,6 +17,7 @@ body {
 
 nav.navbar {
   border-top: 6px solid #276cda;
+  margin-bottom: 2rem;
 }
 
 .navbar-item.brand-text {
@@ -141,4 +143,21 @@ p {
 }
 p.subtitle {
   padding-top: 1rem;
+}
+
+.colors {
+  display: flex;
+}
+.color-selector {
+  height: 35px;
+  width: 35px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5rem;
+  border: 2px solid grey;
+}
+
+.color-selector.active {
+  border: 5px solid hsl(217, 71%, 53%);
 }

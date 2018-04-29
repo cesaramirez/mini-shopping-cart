@@ -1,0 +1,58 @@
+<template>
+    <div class="card">
+        <div class="card-image">
+            <figure class="image relative">
+                <img :src="selected.image" alt="Placeholder image" class="image">
+                <div class="colors absolute pin-b pin-r m-1" v-if="product.colors.length > 1">
+                    <template v-for="color in product.colors">
+                        <a
+                            href=""
+                            @click.prevent="variant(color.id)"
+                            class="color-selector"
+                            :class="selected == color ? 'active' : ''"
+                            :key="color.id"
+                            :style="{ 'background-color': color.hexa_code }"/>
+                    </template>
+                </div>
+            </figure>
+        </div>
+        <div class="card-content">
+            <div class="media">
+                <div class="media-content flex justify-between">
+                    <p class="title is-4">{{ product.title }}</p>
+                    <p class="title is-2">${{ selected.price }}</p>
+                </div>
+            </div>
+
+            <div class="content">
+                {{ product.description }}
+            </div>
+            <button class="button is-info is-outlined is-rounded is-fullwidth">Add to cart</button>
+        </div>
+    </div>
+</template>
+
+<script>
+import _ from "lodash";
+export default {
+  name: "product",
+  props: {
+    product: {
+      required: true
+    }
+  },
+  data: () => ({
+    selected: null
+  }),
+  created() {
+    this.variant(_.first(this.product.colors).id);
+  },
+  methods: {
+    variant(id) {
+      this.selected = this.product.colors.find(color => {
+        return color.id === id;
+      });
+    }
+  }
+};
+</script>

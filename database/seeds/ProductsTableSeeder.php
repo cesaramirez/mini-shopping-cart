@@ -19,6 +19,42 @@ class ProductsTableSeeder extends Seeder
                 'created_at'  => now(),
                 'updated_at'  => now(),
             ],
+            [
+                'title'       => 'ReactJS Shirt',
+                'slug'        => str_slug('ReactJS Shirt'),
+                'description' => 'Shirt React Logo with color variants',
+                'sale'        => false,
+                'gender'      => 'man',
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ],
+            [
+                'title'       => 'JQuery Shirt',
+                'slug'        => str_slug('JQuery Shirt'),
+                'description' => 'Shirt JQuery Logo with color variants',
+                'sale'        => false,
+                'gender'      => 'man',
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ],
+            [
+                'title'       => 'Laravel Shirt',
+                'slug'        => str_slug('Laravel Shirt'),
+                'description' => 'Shirt Laravel Logo with color variants',
+                'sale'        => true,
+                'gender'      => 'man',
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ],
+            [
+                'title'       => 'Casual Shoes',
+                'slug'        => str_slug('Casual Shoes'),
+                'description' => 'Casual Shoes with leather finish',
+                'sale'        => true,
+                'gender'      => 'man',
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ],
         ];
 
         DB::table('products')->insert($products);

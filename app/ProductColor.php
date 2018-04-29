@@ -19,6 +19,15 @@ class ProductColor extends Model
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'price' => 'float',
+    ];
+
+    /**
      * Get product belogns to color.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
