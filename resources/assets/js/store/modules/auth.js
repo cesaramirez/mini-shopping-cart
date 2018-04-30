@@ -61,6 +61,18 @@ export const actions = {
     }
   },
 
+  async register({ commit, dispatch }, payload) {
+    try {
+      await axios.post("/api/v1/auth/register", payload);
+    } catch (e) {
+      console.log(data);
+      if (e.response) {
+        throw e.response.data.error;
+      }
+      throw "Server Error";
+    }
+  },
+
   saveToken({ commit, dispatch }, payload) {
     commit(types.SAVE_TOKEN, payload);
   },

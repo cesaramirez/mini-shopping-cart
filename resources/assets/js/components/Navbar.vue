@@ -36,7 +36,7 @@
                         <a class="navbar-item" target="_blank" href="" @click.prevent="signIn">
                             Sign In
                         </a>
-                        <a class="navbar-item" target="_blank" href="">
+                        <a class="navbar-item" target="_blank" href="" @click.prevent="signUp">
                             Sign Up
                         </a>
                     </template>
@@ -44,6 +44,7 @@
             </div>
         </div>
         <login/>
+        <register/>
     </nav>
 </template>
 
@@ -51,11 +52,13 @@
 import { mapGetters, mapActions } from "vuex";
 import { EventBus } from "~/bus.js";
 import Login from "~/components/Login";
+import Register from "~/components/Register";
 
 export default {
   name: "Navbar",
   components: {
-    Login
+    Login,
+    Register
   },
   mounted() {
     this.getCart();
@@ -74,6 +77,9 @@ export default {
     }),
     signIn() {
       EventBus.$emit("sign-in", true);
+    },
+    signUp() {
+      EventBus.$emit("sign-up", true);
     },
     async logout() {
       await this.$store.dispatch("auth/logout");

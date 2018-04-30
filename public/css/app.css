@@ -11866,8 +11866,16 @@ label.panel-block:hover {
   margin: 0 3rem;
 }
 
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
 .mb-4 {
   margin-bottom: 4rem;
+}
+
+.w-half {
+  width: 50%;
 }
 
 html,

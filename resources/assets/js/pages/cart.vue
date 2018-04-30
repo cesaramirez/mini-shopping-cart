@@ -13,7 +13,7 @@
                     <div class="media-content">
                         <div class="content">
                             <div>
-                                <strong>{{ item.product.parent.title }}</strong>
+                                <strong class="is-size-4">{{ item.product.parent.title }}</strong>
                                 <p class="mb-4">{{ item.product.parent.description }}</p>
                                 <p>${{ item.product.price }} X {{ item.quantity }}
                                     <a href="" class="mx-1" @click.prevent="removeProductFromCart(item.product.id)">
@@ -26,12 +26,15 @@
                     </div>
                 </article>
             </div>
+            <div class="mb-2">
+                <p class="title is-4">Total: ${{ total }}</p>
+            </div>
             <div class="flex">
-                <a href="" v-if="user" class="button is-info is-block is-half is-large">Checkout</a>
-                <a href="" v-else class="button is-info is-block is-half is-large" @click.prevent="signIn">Login to Checkout</a>
+                <a href="" v-if="user" class="button is-info is-block is-large w-half">Checkout</a>
+                <a href="" v-else class="button is-info is-block is-large w-half" @click.prevent="signIn">Login to Checkout</a>
                 <a
                     href=""
-                    class="button is-danger is-block is-half is-large"
+                    class="button is-danger is-block is-large w-half"
                     @click.prevent="removeAllProductsFromCart">
                     Clear Cart
                 </a>
@@ -49,7 +52,8 @@ export default {
   computed: {
     ...mapGetters({
       cart: "cart/cart",
-      user: "auth/user"
+      user: "auth/user",
+      total: "cart/cartTotal"
     })
   },
   methods: {

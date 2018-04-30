@@ -31829,7 +31829,7 @@ var actions = {
       var commit = _ref4.commit,
           dispatch = _ref4.dispatch;
 
-      var _ref6, data;
+      var _ref6, _data;
 
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -31841,11 +31841,11 @@ var actions = {
 
             case 3:
               _ref6 = _context.sent;
-              data = _ref6.data;
+              _data = _ref6.data;
 
               dispatch("saveToken", {
-                token: data.token,
-                expires_in: data.expires_in
+                token: _data.token,
+                expires_in: _data.expires_in
               });
               _context.next = 8;
               return dispatch("fetchUser");
@@ -31882,78 +31882,124 @@ var actions = {
 
     return login;
   }(),
-  saveToken: function saveToken(_ref7, payload) {
-    var commit = _ref7.commit,
-        dispatch = _ref7.dispatch;
-
-    commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["g" /* SAVE_TOKEN */], payload);
-  },
-  fetchUser: function () {
-    var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref8) {
-      var commit = _ref8.commit;
-
-      var _ref10, data;
-
+  register: function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref7, payload) {
+      var commit = _ref7.commit,
+          dispatch = _ref7.dispatch;
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
               _context2.next = 3;
-              return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post("/api/v1/auth/me");
+              return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post("/api/v1/auth/register", payload);
 
             case 3:
-              _ref10 = _context2.sent;
-              data = _ref10.data;
-
-
-              commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["d" /* FETCH_USER_SUCCESS */], { user: data });
               _context2.next = 11;
               break;
 
-            case 8:
-              _context2.prev = 8;
+            case 5:
+              _context2.prev = 5;
               _context2.t0 = _context2["catch"](0);
 
-              commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["c" /* FETCH_USER_FAILURE */]);
+              console.log(data);
+
+              if (!_context2.t0.response) {
+                _context2.next = 10;
+                break;
+              }
+
+              throw _context2.t0.response.data.error;
+
+            case 10:
+              throw "Server Error";
 
             case 11:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, this, [[0, 8]]);
+      }, _callee2, this, [[0, 5]]);
     }));
 
-    function fetchUser(_x3) {
-      return _ref9.apply(this, arguments);
+    function register(_x3, _x4) {
+      return _ref8.apply(this, arguments);
     }
 
-    return fetchUser;
+    return register;
   }(),
-  updateUser: function updateUser(_ref11, payload) {
-    var commit = _ref11.commit;
+  saveToken: function saveToken(_ref9, payload) {
+    var commit = _ref9.commit,
+        dispatch = _ref9.dispatch;
 
-    commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["j" /* UPDATE_USER */], payload);
+    commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["g" /* SAVE_TOKEN */], payload);
   },
-  logout: function () {
-    var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(_ref12) {
-      var commit = _ref12.commit;
+  fetchUser: function () {
+    var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(_ref10) {
+      var commit = _ref10.commit;
+
+      var _ref12, _data2;
+
       return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
+              return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post("/api/v1/auth/me");
+
+            case 3:
+              _ref12 = _context3.sent;
+              _data2 = _ref12.data;
+
+
+              commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["d" /* FETCH_USER_SUCCESS */], { user: _data2 });
+              _context3.next = 11;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](0);
+
+              commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["c" /* FETCH_USER_FAILURE */]);
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this, [[0, 8]]);
+    }));
+
+    function fetchUser(_x5) {
+      return _ref11.apply(this, arguments);
+    }
+
+    return fetchUser;
+  }(),
+  updateUser: function updateUser(_ref13, payload) {
+    var commit = _ref13.commit;
+
+    commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["j" /* UPDATE_USER */], payload);
+  },
+  logout: function () {
+    var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(_ref14) {
+      var commit = _ref14.commit;
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
               return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post("/api/v1/auth/logout");
 
             case 3:
-              _context3.next = 7;
+              _context4.next = 7;
               break;
 
             case 5:
-              _context3.prev = 5;
-              _context3.t0 = _context3["catch"](0);
+              _context4.prev = 5;
+              _context4.t0 = _context4["catch"](0);
 
             case 7:
 
@@ -31961,14 +32007,14 @@ var actions = {
 
             case 8:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3, this, [[0, 5]]);
+      }, _callee4, this, [[0, 5]]);
     }));
 
-    function logout(_x4) {
-      return _ref13.apply(this, arguments);
+    function logout(_x6) {
+      return _ref15.apply(this, arguments);
     }
 
     return logout;
@@ -37955,6 +38001,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bus_js__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Login__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Login__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Register__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Register___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Register__);
 
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -38010,6 +38058,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+
 
 
 
@@ -38018,7 +38068,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
   components: {
-    Login: __WEBPACK_IMPORTED_MODULE_3__components_Login___default.a
+    Login: __WEBPACK_IMPORTED_MODULE_3__components_Login___default.a,
+    Register: __WEBPACK_IMPORTED_MODULE_4__components_Register___default.a
   },
   mounted: function mounted() {
     this.getCart();
@@ -38035,6 +38086,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   }), {
     signIn: function signIn() {
       __WEBPACK_IMPORTED_MODULE_2__bus_js__["a" /* EventBus */].$emit("sign-in", true);
+    },
+    signUp: function signUp() {
+      __WEBPACK_IMPORTED_MODULE_2__bus_js__["a" /* EventBus */].$emit("sign-up", true);
     },
     logout: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
@@ -38453,7 +38507,13 @@ var render = function() {
                       "a",
                       {
                         staticClass: "navbar-item",
-                        attrs: { target: "_blank", href: "" }
+                        attrs: { target: "_blank", href: "" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.signUp($event)
+                          }
+                        }
                       },
                       [
                         _vm._v(
@@ -38468,7 +38528,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("login")
+      _c("login"),
+      _vm._v(" "),
+      _c("register")
     ],
     1
   )
@@ -42960,6 +43022,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
 
 
 
@@ -42968,7 +43033,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   name: "Cart",
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
     cart: "cart/cart",
-    user: "auth/user"
+    user: "auth/user",
+    total: "cart/cartTotal"
   })),
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
     removeProductFromCart: "cart/removeProductFromCart",
@@ -43011,7 +43077,7 @@ var render = function() {
                   _c("div", { staticClass: "media-content" }, [
                     _c("div", { staticClass: "content" }, [
                       _c("div", [
-                        _c("strong", [
+                        _c("strong", { staticClass: "is-size-4" }, [
                           _vm._v(_vm._s(item.product.parent.title))
                         ]),
                         _vm._v(" "),
@@ -43060,12 +43126,18 @@ var render = function() {
               ])
             }),
         _vm._v(" "),
+        _c("div", { staticClass: "mb-2" }, [
+          _c("p", { staticClass: "title is-4" }, [
+            _vm._v("Total: $" + _vm._s(_vm.total))
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "flex" }, [
           _vm.user
             ? _c(
                 "a",
                 {
-                  staticClass: "button is-info is-block is-half is-large",
+                  staticClass: "button is-info is-block is-large w-half",
                   attrs: { href: "" }
                 },
                 [_vm._v("Checkout")]
@@ -43073,7 +43145,7 @@ var render = function() {
             : _c(
                 "a",
                 {
-                  staticClass: "button is-info is-block is-half is-large",
+                  staticClass: "button is-info is-block is-large w-half",
                   attrs: { href: "" },
                   on: {
                     click: function($event) {
@@ -43088,7 +43160,7 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "button is-danger is-block is-half is-large",
+              staticClass: "button is-danger is-block is-large w-half",
               attrs: { href: "" },
               on: {
                 click: function($event) {
@@ -43112,6 +43184,390 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-5d9218bd", module.exports)
+  }
+}
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(100)
+/* template */
+var __vue_template__ = __webpack_require__(101)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Register.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f88ac34c", Component.options)
+  } else {
+    hotAPI.reload("data-v-f88ac34c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bus_js__ = __webpack_require__(19);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Register",
+  data: function data() {
+    return {
+      active: false,
+      name: "",
+      email: "cesar@email.com",
+      password: "secret",
+      password_confirmation: ""
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    __WEBPACK_IMPORTED_MODULE_1__bus_js__["a" /* EventBus */].$on("sign-up", function (active) {
+      _this.active = active;
+    });
+  },
+
+  methods: {
+    register: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return this.$store.dispatch("auth/register", {
+                  name: this.name,
+                  email: this.email,
+                  password: this.password,
+                  password_confirmation: this.password_confirmation
+                });
+
+              case 2:
+                _context.next = 4;
+                return this.$store.dispatch("auth/login", {
+                  email: this.email,
+                  password: this.password
+                });
+
+              case 4:
+
+                this.active = false;
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function register() {
+        return _ref.apply(this, arguments);
+      }
+
+      return register;
+    }()
+  }
+});
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-modal",
+    {
+      attrs: { active: _vm.active, "has-modal-card": "", width: 500 },
+      on: {
+        "update:active": function($event) {
+          _vm.active = $event
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "hero-body" }, [
+        _c("div", { staticClass: "container has-text-centered" }, [
+          _c("div", { staticClass: "column is-4" }, [
+            _c("h3", { staticClass: "title has-text-grey" }, [
+              _vm._v("Register")
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "subtitle has-text-grey" }, [
+              _vm._v("Please register to proceed.")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "box" }, [
+              _c("figure", { staticClass: "avatar" }, [
+                _c("img", { attrs: { src: "https://placehold.it/128x128" } })
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.register($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "field" }, [
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.name,
+                            expression: "name"
+                          }
+                        ],
+                        staticClass: "input is-large",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Your Name",
+                          autofocus: ""
+                        },
+                        domProps: { value: _vm.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.name = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field" }, [
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.email,
+                            expression: "email"
+                          }
+                        ],
+                        staticClass: "input is-large",
+                        attrs: { type: "email", placeholder: "Your Email" },
+                        domProps: { value: _vm.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.email = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field" }, [
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password,
+                            expression: "password"
+                          }
+                        ],
+                        staticClass: "input is-large",
+                        attrs: {
+                          type: "password",
+                          placeholder: "Your Password"
+                        },
+                        domProps: { value: _vm.password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.password = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field" }, [
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password_confirmation,
+                            expression: "password_confirmation"
+                          }
+                        ],
+                        staticClass: "input is-large",
+                        attrs: {
+                          type: "password",
+                          placeholder: "Your Password Confirmation"
+                        },
+                        domProps: { value: _vm.password_confirmation },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.password_confirmation = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "button is-block is-info is-large is-fullwidth",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Register")]
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "has-text-grey" }, [
+              _c("a", { attrs: { href: "../" } }, [_vm._v("Sign Up")]),
+              _vm._v("  · \n                        "),
+              _c("a", { attrs: { href: "../" } }, [_vm._v("Forgot Password")])
+            ])
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f88ac34c", module.exports)
   }
 }
 
