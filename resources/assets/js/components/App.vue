@@ -1,10 +1,12 @@
 <template>
   <div id="app">
+      <loading ref="loading"/>
       <component v-if="layout" :is="layout"/>
   </div>
 </template>
 
 <script>
+import Loading from "./Loading";
 // Load layout components dynamically.
 const requireContext = require.context("~/layouts", false, /.*\.vue$/);
 
@@ -28,6 +30,12 @@ export default {
       title: appName,
       titleTemplate: `%s · ${appName}`
     };
+  },
+  components: {
+    Loading
+  },
+  mounted() {
+    this.$loading = this.$refs.loading;
   },
   methods: {
     /**

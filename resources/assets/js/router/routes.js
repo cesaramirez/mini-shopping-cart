@@ -4,5 +4,6 @@ import Cart from "~/pages/cart";
 
 export default [
   { path: "/", name: "home", component: Products },
-  { path: "/cart", name: "cart", component: Cart }
+  { path: "/cart", name: "cart", component: Cart },
+  { path: "/products/:type", name: "products", component: Products }
 ];

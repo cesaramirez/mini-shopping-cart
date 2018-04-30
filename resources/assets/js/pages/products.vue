@@ -19,6 +19,9 @@ export default {
   components: {
     Product
   },
+  mounted() {
+    this.getProducts();
+  },
   computed: mapGetters({
     products: "products/products"
   }),
@@ -26,9 +29,6 @@ export default {
     ...mapActions({
       getProducts: "products/getProducts"
     })
-  },
-  mounted() {
-    this.getProducts();
   }
 };
 </script>

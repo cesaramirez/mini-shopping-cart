@@ -34,6 +34,7 @@ function createRouter() {
   });
 
   router.beforeEach(beforeEach);
+  router.afterEach(afterEach);
 
   return router;
 }
@@ -50,6 +51,15 @@ async function beforeEach(to, from, next) {
   const components = await resolveComponents(
     router.getMatchedComponents({ ...to })
   );
+
+  if (components.length === 0) {
+    return next();
+  }
+
+  // Start the loading bar.
+  if (components[components.length - 1].loading !== false) {
+    router.app.$nextTick(() => router.app.$loading.start());
+  }
 
   // Get the middleware for all the matched components.
   const middleware = getMiddleware(components);
@@ -97,6 +107,54 @@ async function beforeEach(to, from, next) {
 
     _next();
   }
+}
+
+/**
+ * Global after hook.
+ *
+ * @param {Route} to
+ * @param {Route} from
+ * @param {Function} next
+ */
+async function afterEach(to, from, next) {
+  await router.app.$nextTick();
+
+  router.app.$loading.finish();
+}
+
+/**
+ * Call each middleware.
+ *
+ * @param {Array} middleware
+ * @param {Route} to
+ * @param {Route} from
+ * @param {Function} next
+ */
+function callMiddleware(middleware, to, from, next) {
+  const stack = middleware.reverse();
+
+  const _next = (...args) => {
+    // Stop if "_next" was called with an argument or the stack is empty.
+    if (args.length > 0 || stack.length === 0) {
+      if (args.length > 0) {
+        router.app.$loading.finish();
+      }
+
+      return next(...args);
+    }
+
+    const middleware = stack.pop();
+
+    if (typeof middleware === "function") {
+      middleware(to, from, _next);
+    } else if (routeMiddleware[middleware]) {
+      routeMiddleware[middleware](to, from, _next);
+    } else {
+      throw Error(`Undefined middleware [${middleware}]`);
+    }
+  };
+
+  _next();
 }
 
 /**
