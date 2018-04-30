@@ -29875,12 +29875,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /* unused harmony export FETCH_USER */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FETCH_USER_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FETCH_USER_FAILURE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return UPDATE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return UPDATE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return SET_PRODUCTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return SET_CART; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return APPEND_TO_CART; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return REMOVE_FROM_CART; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CLEAR_CART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return SET_VALIDATION_ERRORS; });
 // auth.js
 var LOGOUT = "LOGOUT";
 var SAVE_TOKEN = "SAVE_TOKEN";
@@ -29897,6 +29898,9 @@ var SET_CART = "SET_CART";
 var APPEND_TO_CART = "APPEND_TO_CART";
 var REMOVE_FROM_CART = "REMOVE_FROM_CART";
 var CLEAR_CART = "CLEAR_CART";
+
+// validation.js
+var SET_VALIDATION_ERRORS = "SET_VALIDATION_ERRORS";
 
 /***/ }),
 /* 12 */
@@ -31731,7 +31735,8 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 var map = {
 	"./auth.js": 46,
 	"./cart.js": 49,
-	"./products.js": 50
+	"./products.js": 50,
+	"./validation.js": 102
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -31816,7 +31821,7 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
   state.token = null;
 
   __WEBPACK_IMPORTED_MODULE_2_js_cookie___default.a.remove("token");
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_3__mutation_types__["j" /* UPDATE_USER */], function (state, _ref3) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_3__mutation_types__["k" /* UPDATE_USER */], function (state, _ref3) {
   var user = _ref3.user;
 
   state.user = user;
@@ -31980,7 +31985,7 @@ var actions = {
   updateUser: function updateUser(_ref13, payload) {
     var commit = _ref13.commit;
 
-    commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["j" /* UPDATE_USER */], payload);
+    commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["k" /* UPDATE_USER */], payload);
   },
   logout: function () {
     var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(_ref14) {
@@ -33094,15 +33099,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_js_cookie__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mutation_types__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutation_types__ = __webpack_require__(11);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -33120,7 +33122,7 @@ var getters = {
 };
 
 // mutations
-var mutations = _defineProperty({}, __WEBPACK_IMPORTED_MODULE_3__mutation_types__["i" /* SET_PRODUCTS */], function (state, products) {
+var mutations = _defineProperty({}, __WEBPACK_IMPORTED_MODULE_2__mutation_types__["i" /* SET_PRODUCTS */], function (state, products) {
   state.products = products;
 });
 
@@ -33145,7 +33147,7 @@ var actions = {
               _ref3 = _context.sent;
               data = _ref3.data;
 
-              commit(__WEBPACK_IMPORTED_MODULE_3__mutation_types__["i" /* SET_PRODUCTS */], data.data);
+              commit(__WEBPACK_IMPORTED_MODULE_2__mutation_types__["i" /* SET_PRODUCTS */], data.data);
               return _context.abrupt("return", data);
 
             case 9:
@@ -33250,7 +33252,6 @@ var beforeEach = function () {
 
             // Get the middleware for all the matched components.
             middleware = getMiddleware(components);
-
             // Call each middleware.
 
             callMiddleware(middleware, to, from, function () {
@@ -34810,6 +34811,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -34888,6 +34890,10 @@ var render = function() {
               ],
               2
             )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.product.sale
+          ? _c("span", { staticClass: "tag is-danger" }, [_vm._v("Sale")])
           : _vm._e()
       ])
     ]),
@@ -38143,7 +38149,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bus_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bus_js__ = __webpack_require__(19);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -38199,6 +38206,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -38213,11 +38223,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   created: function created() {
     var _this = this;
 
-    __WEBPACK_IMPORTED_MODULE_1__bus_js__["a" /* EventBus */].$on("sign-in", function (active) {
+    __WEBPACK_IMPORTED_MODULE_2__bus_js__["a" /* EventBus */].$on("sign-in", function (active) {
       _this.active = active;
     });
   },
 
+  computed: Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
+    errors: "validation/errors"
+  }),
   methods: {
     login: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
@@ -38233,8 +38246,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 2:
                 this.active = false;
+                this.$store.dispatch("validation/clearErrors");
 
-              case 3:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -38321,7 +38335,16 @@ var render = function() {
                             _vm.email = $event.target.value
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.email
+                        ? _c("p", {
+                            staticClass: "help is-danger",
+                            domProps: {
+                              textContent: _vm._s(_vm.errors.email[0])
+                            }
+                          })
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -38350,7 +38373,16 @@ var render = function() {
                             _vm.password = $event.target.value
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.password
+                        ? _c("p", {
+                            staticClass: "help is-danger",
+                            domProps: {
+                              textContent: _vm._s(_vm.errors.password[0])
+                            }
+                          })
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -38606,12 +38638,7 @@ var render = function() {
     [
       _c("navbar"),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "container", staticStyle: { "padding-top": "7rem" } },
-        [_c("child")],
-        1
-      )
+      _c("div", { staticClass: "container pt-2" }, [_c("child")], 1)
     ],
     1
   )
@@ -38658,6 +38685,8 @@ if (false) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buefy__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fontawesome__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__axios__ = __webpack_require__(103);
+
 
 
 
@@ -43327,7 +43356,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bus_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bus_js__ = __webpack_require__(19);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -43398,6 +43428,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43414,11 +43449,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   created: function created() {
     var _this = this;
 
-    __WEBPACK_IMPORTED_MODULE_1__bus_js__["a" /* EventBus */].$on("sign-up", function (active) {
+    __WEBPACK_IMPORTED_MODULE_2__bus_js__["a" /* EventBus */].$on("sign-up", function (active) {
       _this.active = active;
     });
   },
 
+  computed: Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])({
+    errors: "validation/errors"
+  }),
   methods: {
     register: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
@@ -43444,8 +43482,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               case 4:
 
                 this.active = false;
+                this.$store.dispatch("validation/clearErrors");
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -43534,7 +43573,16 @@ var render = function() {
                             _vm.name = $event.target.value
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.name
+                        ? _c("p", {
+                            staticClass: "help is-danger",
+                            domProps: {
+                              textContent: _vm._s(_vm.errors.name[0])
+                            }
+                          })
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -43560,7 +43608,16 @@ var render = function() {
                             _vm.email = $event.target.value
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.email
+                        ? _c("p", {
+                            staticClass: "help is-danger",
+                            domProps: {
+                              textContent: _vm._s(_vm.errors.email[0])
+                            }
+                          })
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -43589,7 +43646,16 @@ var render = function() {
                             _vm.password = $event.target.value
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.password
+                        ? _c("p", {
+                            staticClass: "help is-danger",
+                            domProps: {
+                              textContent: _vm._s(_vm.errors.password[0])
+                            }
+                          })
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -43618,7 +43684,18 @@ var render = function() {
                             _vm.password_confirmation = $event.target.value
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.password_confirmation
+                        ? _c("p", {
+                            staticClass: "help is-danger",
+                            domProps: {
+                              textContent: _vm._s(
+                                _vm.errors.password_confirmation[0]
+                              )
+                            }
+                          })
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -43637,7 +43714,7 @@ var render = function() {
             _vm._v(" "),
             _c("p", { staticClass: "has-text-grey" }, [
               _c("a", { attrs: { href: "../" } }, [_vm._v("Sign Up")]),
-              _vm._v("  · \n                        "),
+              _vm._v("  · \n                    "),
               _c("a", { attrs: { href: "../" } }, [_vm._v("Forgot Password")])
             ])
           ])
@@ -43655,6 +43732,78 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-f88ac34c", module.exports)
   }
 }
+
+/***/ }),
+/* 102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getters", function() { return getters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mutation_types__ = __webpack_require__(11);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var state = function state() {
+  return {
+    errors: {}
+  };
+};
+
+var getters = {
+  errors: function errors(state) {
+    return state.errors;
+  }
+};
+
+var mutations = _defineProperty({}, __WEBPACK_IMPORTED_MODULE_1__mutation_types__["j" /* SET_VALIDATION_ERRORS */], function (state, errors) {
+  state.errors = errors;
+});
+
+var actions = {
+  setErrors: function setErrors(_ref, errors) {
+    var commit = _ref.commit;
+
+    commit(__WEBPACK_IMPORTED_MODULE_1__mutation_types__["j" /* SET_VALIDATION_ERRORS */], errors);
+  },
+  clearErrors: function clearErrors(_ref2) {
+    var commit = _ref2.commit;
+
+    commit(__WEBPACK_IMPORTED_MODULE_1__mutation_types__["j" /* SET_VALIDATION_ERRORS */], {});
+  }
+};
+
+/***/ }),
+/* 103 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store__ = __webpack_require__(6);
+
+
+
+// Response interceptor
+__WEBPACK_IMPORTED_MODULE_0_axios___default.a.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  var status = error.response.status;
+
+
+  if (status === 422) {
+    __WEBPACK_IMPORTED_MODULE_1__store__["a" /* default */].dispatch("validation/setErrors", error.response.data.errors);
+  }
+
+  return Promise.reject(error);
+});
 
 /***/ })
 /******/ ]);

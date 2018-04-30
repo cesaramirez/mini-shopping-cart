@@ -92,6 +92,15 @@ class ProductColorsTableSeeder extends Seeder
                 'created_at'  => now(),
                 'updated_at'  => now(),
             ],
+            [
+                'image'       => 'https://res.cloudinary.com/dirygrccg/image/upload/v1525071375/jacket.png',
+                'hexa_code'   => '#000',
+                'price'       => '25.00',
+                'stock'       => 15,
+                'product_id'  => Product::where('slug', str_slug('Fang Backpack'))->first()->id,
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ],
         ];
 
         DB::table('product_colors')->insert($colors);

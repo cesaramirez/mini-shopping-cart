@@ -18,6 +18,7 @@
                                     placeholder="Your Email"
                                     autofocus
                                     v-model="email">
+                                    <p class="help is-danger" v-if="errors.email" v-text="errors.email[0]"></p>
                                 </div>
                             </div>
 
@@ -28,6 +29,7 @@
                                     type="password"
                                     placeholder="Your Password"
                                     v-model="password">
+                                    <p class="help is-danger" v-if="errors.password" v-text="errors.password[0]"></p>
                                 </div>
                             </div>
                             <div class="field">
@@ -50,6 +52,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { EventBus } from "~/bus.js";
 export default {
   name: "Login",
@@ -63,6 +66,9 @@ export default {
       this.active = active;
     });
   },
+  computed: mapGetters({
+    errors: "validation/errors"
+  }),
   methods: {
     async login() {
       // Submit the form.
@@ -71,6 +77,7 @@ export default {
         password: this.password
       });
       this.active = false;
+      this.$store.dispatch("validation/clearErrors");
     }
   }
 };

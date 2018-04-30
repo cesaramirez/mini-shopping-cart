@@ -1,7 +1,7 @@
 <template>
     <div>
         <navbar/>
-        <div class="container" style="padding-top: 7rem">
+        <div class="container pt-2">
           <child/>
         </div>
     </div>

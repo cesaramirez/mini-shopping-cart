@@ -14,6 +14,7 @@
                             :style="{ 'background-color': color.hexa_code }"/>
                     </template>
                 </div>
+                <span class="tag is-danger" v-if="product.sale">Sale</span>
             </figure>
         </div>
         <div class="card-content">

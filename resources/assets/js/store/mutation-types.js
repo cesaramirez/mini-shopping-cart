@@ -14,3 +14,6 @@ export const SET_CART = "SET_CART";
 export const APPEND_TO_CART = "APPEND_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
+
+// validation.js
+export const SET_VALIDATION_ERRORS = "SET_VALIDATION_ERRORS";

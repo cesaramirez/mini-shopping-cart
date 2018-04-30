@@ -53,7 +53,6 @@ async function beforeEach(to, from, next) {
 
   // Get the middleware for all the matched components.
   const middleware = getMiddleware(components);
-
   // Call each middleware.
   callMiddleware(middleware, to, from, (...args) => {
     // Set the application layout only if "next()" was called with no args.

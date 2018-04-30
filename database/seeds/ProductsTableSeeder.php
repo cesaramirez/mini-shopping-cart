@@ -55,6 +55,15 @@ class ProductsTableSeeder extends Seeder
                 'created_at'  => now(),
                 'updated_at'  => now(),
             ],
+            [
+                'title'       => 'Fang Backpack',
+                'slug'        => str_slug('Fang Backpack'),
+                'description' => 'Camo Fang Backpack Jungle',
+                'sale'        => true,
+                'gender'      => 'woman',
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ],
         ];
 
         DB::table('products')->insert($products);
