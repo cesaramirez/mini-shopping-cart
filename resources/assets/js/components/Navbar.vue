@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar is-white is-shadowless">
+    <nav class="navbar is-white is-shadowless is-fixed-top has-shadow">
         <div class="container">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">

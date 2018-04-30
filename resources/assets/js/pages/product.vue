@@ -27,13 +27,14 @@
             <div class="content">
                 {{ product.description }}
             </div>
-            <button class="button is-info is-outlined is-rounded is-fullwidth">Add to cart</button>
+            <a href="" class="button is-info is-outlined is-rounded is-fullwidth" @click.prevent="addToCart">Add to cart</a>
         </div>
     </div>
 </template>
 
 <script>
 import _ from "lodash";
+import { mapActions } from "vuex";
 export default {
   name: "product",
   props: {
@@ -51,6 +52,15 @@ export default {
     variant(id) {
       this.selected = this.product.colors.find(color => {
         return color.id === id;
+      });
+    },
+    ...mapActions({
+      addProductToCart: "cart/addProductToCart"
+    }),
+    addToCart() {
+      this.addProductToCart({
+        product: this.selected,
+        quantity: 1
       });
     }
   }

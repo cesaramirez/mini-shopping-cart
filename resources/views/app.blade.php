@@ -18,7 +18,7 @@ $config = [
         <!-- Fonts -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
     </head>
-    <body>
+    <body class="has-navbar-fixed-top">
         <div id="app"></div>
 
         <script> window.config = @json($config) </script>

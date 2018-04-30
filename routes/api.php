@@ -19,4 +19,6 @@ $router->namespace('API\V1')
        ->prefix('v1')
        ->group(function ($router) {
            $router->get('products', 'ProductsController@index');
+           $router->get('cart', 'CartsController@index');
+           $router->post('cart', 'CartsController@store');
        });
