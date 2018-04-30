@@ -14,6 +14,7 @@ class ProductColor extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'image',
         'price',
         'hexa_code',

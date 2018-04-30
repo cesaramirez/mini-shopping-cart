@@ -26,6 +26,10 @@
   justify-content: space-between;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .items-end {
   align-items: flex-end;
 }
@@ -40,4 +44,8 @@
 
 .mx-3 {
   margin: 0 3rem;
+}
+
+.mb-4 {
+  margin-bottom: 4rem;
 }

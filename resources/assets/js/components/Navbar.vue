@@ -2,18 +2,18 @@
     <nav class="navbar is-white is-shadowless is-fixed-top has-shadow">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item" href="/">
+                <router-link class="navbar-item" :to="{name: 'home'}">
                     Acme Company
-                </a>
+                </router-link>
             </div>
             <div class="navbar-menu">
                 <div class="navbar-end">
-                    <a class="navbar-item mx-2">
+                    <router-link :to="{name: 'cart'}" class="navbar-item mx-2">
                         <span class="mx-1">${{ total }}</span>
                         <span class="badge is-badge-danger" :data-badge="count">
                             <i class="fas fa-shopping-cart fa-lg"></i>
                         </span>
-                    </a>
+                    </router-link>
                     <div v-if="user" class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link" v-text="user.name" />
                         <div class="navbar-dropdown is-boxed">

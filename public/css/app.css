@@ -11842,6 +11842,12 @@ label.panel-block:hover {
           justify-content: space-between;
 }
 
+.justify-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .items-end {
   -webkit-box-align: end;
       -ms-flex-align: end;
@@ -11858,6 +11864,10 @@ label.panel-block:hover {
 
 .mx-3 {
   margin: 0 3rem;
+}
+
+.mb-4 {
+  margin-bottom: 4rem;
 }
 
 html,

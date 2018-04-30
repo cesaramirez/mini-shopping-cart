@@ -16,7 +16,7 @@ class CartsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'product'  => $this->item,
+            'product'  => new ProductColorsResource($this->item),
             'quantity' => $this->quantity,
         ];
     }

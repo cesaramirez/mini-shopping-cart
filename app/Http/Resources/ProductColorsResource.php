@@ -21,6 +21,7 @@ class ProductColorsResource extends JsonResource
             'price'       => $this->price,
             'hexa_code'   => $this->hexa_code,
             'stock'       => $this->stock,
+            'parent'     => $this->product,
         ];
     }
 }

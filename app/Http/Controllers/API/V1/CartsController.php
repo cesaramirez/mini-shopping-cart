@@ -29,12 +29,13 @@ class CartsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Delete all registers.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function deleleAll()
     {
+        $this->carts->truncate();
     }
 
     /**
@@ -101,7 +102,14 @@ class CartsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy($productId, Request $request)
     {
+        $item = $this->carts->where('product_colors_id', $productId)->first();
+        $item->decrement('quantity');
+        if ($item->quantity === 0) {
+            $item->delete();
+        }
+
+        return response(null, 200);
     }
 }

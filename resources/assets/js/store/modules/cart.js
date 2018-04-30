@@ -86,7 +86,7 @@ export const actions = {
   async removeProductFromCart({ commit }, productId) {
     try {
       commit(types.REMOVE_FROM_CART, productId);
-      await axios.delete(`/api/cart/${productId}`);
+      await axios.delete(`/api/v1/cart/${productId}`);
     } catch (e) {
       if (e.response) {
         throw e.response.data.error;
