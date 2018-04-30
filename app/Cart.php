@@ -9,6 +9,7 @@ class Cart extends Model
     protected $with = [
         'item',
     ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,6 +20,11 @@ class Cart extends Model
         'quantity',
     ];
 
+    /**
+     * Get item belongs to product colors.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function item()
     {
         return $this->belongsTo(ProductColor::class, 'product_colors_id');

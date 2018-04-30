@@ -10,8 +10,16 @@ use Illuminate\Http\Request;
 
 class CartsController extends Controller
 {
+    /**
+     * carts property.
+     */
     protected $carts;
 
+    /**
+     * Constructor.
+     *
+     * @param \App\Cart; $carts
+     */
     public function __construct(Cart $carts)
     {
         $this->carts = $carts;
@@ -62,6 +70,11 @@ class CartsController extends Controller
         return new CartsResource($item);
     }
 
+    /**
+     * Send mail of cart.
+     *
+     * @param \Illuminate\Http\Request $request
+     */
     public function checkout(Request $request)
     {
         \Mail::to($request->user())->send(new OrderShipped($request->all()));
