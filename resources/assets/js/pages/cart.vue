@@ -26,14 +26,16 @@
                     </div>
                 </article>
             </div>
-            <div class="mb-2">
+            <div class="mb-2" v-if="cart.length > 0">
                 <p class="title is-4">Total: ${{ total }}</p>
             </div>
             <div class="flex">
-                <a href="" v-if="user" class="button is-info is-block is-large w-half" @click.prevent="checkout(cart)">Checkout</a>
+                <a href="" v-if="user && cart.length > 0" class="button is-info is-block is-large w-half" @click.prevent="checkout(cart)">Checkout</a>
+                <router-link href="" v-else-if="cart.length == 0" class="button is-info is-block is-large w-half" :to="{ name: 'home'}">Add items to cart</router-link>
                 <a href="" v-else class="button is-info is-block is-large w-half" @click.prevent="signIn">Login to Checkout</a>
                 <a
                     href=""
+                    v-if="cart.length > 0"
                     class="button is-danger is-block is-large w-half"
                     @click.prevent="removeAllProductsFromCart">
                     Clear Cart
@@ -67,6 +69,14 @@ export default {
     async checkout(cart) {
       const total = this.total;
       await axios.post("/api/v1/checkout", { cart, total });
+      this.$store.dispatch(
+        "noti",
+        {
+          message: "Your purchase has been processed, please check your email!",
+          type: "is-success"
+        },
+        { root: true }
+      );
     }
   }
 };

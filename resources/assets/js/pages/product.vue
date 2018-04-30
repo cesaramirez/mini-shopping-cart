@@ -2,7 +2,9 @@
     <div class="card">
         <div class="card-image">
             <figure class="image relative">
-                <img :src="selected.image" alt="Placeholder image" class="image">
+                <transition name="page" mode="out-in">
+                  <img :src="selected.image" alt="Placeholder image" class="image">
+                </transition>
                 <div class="colors absolute pin-b pin-r m-1" v-if="product.colors.length > 1">
                     <template v-for="color in product.colors">
                         <a

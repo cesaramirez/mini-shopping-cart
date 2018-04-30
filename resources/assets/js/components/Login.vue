@@ -42,8 +42,7 @@
                             </form>
                         </div>
                         <p class="has-text-grey">
-                            <a href="../">Sign Up</a> &nbsp;·&nbsp;
-                            <a href="../">Forgot Password</a>
+                            <a href="" @click.prevent="signUp">Sign Up</a>
                         </p>
                     </div>
                 </div>
@@ -58,8 +57,8 @@ export default {
   name: "Login",
   data: () => ({
     active: false,
-    email: "cesar@email.com",
-    password: "secret"
+    email: "",
+    password: ""
   }),
   created() {
     EventBus.$on("sign-in", active => {
@@ -71,13 +70,25 @@ export default {
   }),
   methods: {
     async login() {
-      // Submit the form.
       await this.$store.dispatch("auth/login", {
         email: this.email,
         password: this.password
       });
       this.active = false;
       this.$store.dispatch("validation/clearErrors");
+
+      this.$store.dispatch(
+        "noti",
+        {
+          message: "Welcome, add products to your shopping cart!",
+          type: "is-success"
+        },
+        { root: true }
+      );
+    },
+    signUp() {
+      this.active = false;
+      EventBus.$emit("sign-up", true);
     }
   }
 };

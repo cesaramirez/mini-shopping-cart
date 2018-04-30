@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { state, getters, mutations, actions } from "./global";
 
 Vue.use(Vuex);
 
@@ -18,5 +19,9 @@ const modules = requireContext
   }, {});
 
 export default new Vuex.Store({
+  state,
+  getters,
+  actions,
+  mutations,
   modules
 });

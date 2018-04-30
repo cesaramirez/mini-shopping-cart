@@ -1,12 +1,16 @@
 <template>
   <div id="app">
       <loading ref="loading"/>
-      <component v-if="layout" :is="layout"/>
+      <notification/>
+      <transition name="page" mode="out-in">
+        <component v-if="layout" :is="layout"/>
+      </transition>
   </div>
 </template>
 
 <script>
 import Loading from "./Loading";
+import Notification from "./Notification";
 // Load layout components dynamically.
 const requireContext = require.context("~/layouts", false, /.*\.vue$/);
 
@@ -32,7 +36,8 @@ export default {
     };
   },
   components: {
-    Loading
+    Loading,
+    Notification
   },
   mounted() {
     this.$loading = this.$refs.loading;

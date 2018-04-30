@@ -59,8 +59,7 @@
                         </form>
                     </div>
                     <p class="has-text-grey">
-                        <a href="../">Sign Up</a> &nbsp;·&nbsp;
-                        <a href="../">Forgot Password</a>
+                        <a href="" @click.prevent="signIn">Sign In</a>
                     </p>
                 </div>
             </div>
@@ -76,8 +75,8 @@ export default {
   data: () => ({
     active: false,
     name: "",
-    email: "cesar@email.com",
-    password: "secret",
+    email: "",
+    password: "",
     password_confirmation: ""
   }),
   created() {
@@ -104,6 +103,18 @@ export default {
 
       this.active = false;
       this.$store.dispatch("validation/clearErrors");
+      this.$store.dispatch(
+        "noti",
+        {
+          message: "Welcome, add products to your shopping cart!",
+          type: "is-success"
+        },
+        { root: true }
+      );
+    },
+    signIn() {
+      this.active = false;
+      EventBus.$emit("sign-in", true);
     }
   }
 };

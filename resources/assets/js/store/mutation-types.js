@@ -17,3 +17,6 @@ export const CLEAR_CART = "CLEAR_CART";
 
 // validation.js
 export const SET_VALIDATION_ERRORS = "SET_VALIDATION_ERRORS";
+
+// global.js
+export const SET_NOTI = "SET_NOTI";

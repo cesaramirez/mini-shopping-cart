@@ -3,6 +3,7 @@
 @import "~bulma";
 @import "~bulma-badge";
 @import "utilities";
+@import "transitions";
 
 html,
 body {
@@ -10,6 +11,8 @@ body {
   font-size: 16px;
   line-height: 1.5;
   background: #ecf0f3;
+  height: 100%;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -121,6 +124,19 @@ nav.navbar {
 }
 .box {
   margin-top: 5rem;
+}
+
+.avatar {
+  margin-top: -70px;
+  padding-bottom: 20px;
+}
+.avatar img {
+  padding: 5px;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1),
+    0 0 0 1px rgba(10, 10, 10, 0.1);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
 }
 
 input {
