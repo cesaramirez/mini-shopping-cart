@@ -1,6 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import * as types from "../mutation-types";
+import _ from "lodash";
 
 // state
 export const state = {
@@ -10,7 +11,7 @@ export const state = {
 // getters
 export const getters = {
   cart: state => state.cart,
-  cartIteamCount: state => state.cart.length,
+  cartItemCount: state => state.cart.length,
   cartTotal: state =>
     state.cart
       .reduce((a, b) => {
@@ -25,9 +26,7 @@ export const mutations = {
     state.cart = cart;
   },
   [types.APPEND_TO_CART](state, product) {
-    const existing = state.cart.find(item => {
-      return item.product.id === product.id;
-    });
+    const existing = state.cart.find(item => item.product.id === product.id);
 
     if (existing) {
       existing.quantity++;
@@ -39,9 +38,7 @@ export const mutations = {
     }
   },
   [types.REMOVE_FROM_CART](state, productId) {
-    const existing = state.cart.find(item => {
-      return item.product.id === productId;
-    });
+    const existing = state.cart.find(item => item.product.id === productId);
 
     if (existing.quantity > 1) {
       existing.quantity--;
@@ -64,6 +61,7 @@ export const actions = {
         product_colors_id: product.id,
         quantity
       });
+      return data;
     } catch (e) {
       if (e.response) {
         throw e.response.data.error;
@@ -75,8 +73,9 @@ export const actions = {
   async getCart({ commit }) {
     try {
       const { data } = await axios.get("/api/v1/cart");
-      commit(types.SET_CART, data);
+      commit(types.SET_CART, data.data);
     } catch (e) {
+      console.log(e);
       if (e.response) {
         throw e.response.data.error;
       }

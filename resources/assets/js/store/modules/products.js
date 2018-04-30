@@ -4,7 +4,7 @@ import * as types from "../mutation-types";
 
 // state
 export const state = {
-  products: null
+  products: []
 };
 
 // getters
@@ -25,6 +25,7 @@ export const actions = {
     try {
       const { data } = await axios.get("/api/v1/products");
       commit(types.SET_PRODUCTS, data.data);
+      return data;
     } catch (e) {
       if (e.response) {
         throw e.response.data.error;

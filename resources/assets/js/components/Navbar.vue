@@ -8,6 +8,12 @@
             </div>
             <div class="navbar-menu">
                 <div class="navbar-end">
+                    <a class="navbar-item mx-2">
+                        <span class="mx-1">${{ total }}</span>
+                        <span class="badge is-badge-danger" :data-badge="count">
+                            <i class="fas fa-shopping-cart fa-lg"></i>
+                        </span>
+                    </a>
                     <div v-if="user" class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link" v-text="user.name" />
                         <div class="navbar-dropdown is-boxed">
@@ -42,7 +48,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { EventBus } from "~/bus.js";
 import Login from "~/components/Login";
 
@@ -51,15 +57,25 @@ export default {
   components: {
     Login
   },
-  computed: mapGetters({
-    user: "auth/user"
-  }),
+  mounted() {
+    this.getCart();
+  },
+  computed: {
+    ...mapGetters({
+      cart: "cart/cart",
+      user: "auth/user",
+      count: "cart/cartItemCount",
+      total: "cart/cartTotal"
+    })
+  },
   methods: {
+    ...mapActions({
+      getCart: "cart/getCart"
+    }),
     signIn() {
       EventBus.$emit("sign-in", true);
     },
     async logout() {
-      // Log out the user.
       await this.$store.dispatch("auth/logout");
     }
   }
