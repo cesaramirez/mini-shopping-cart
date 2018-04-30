@@ -64,6 +64,24 @@ class ProductsTableSeeder extends Seeder
                 'created_at'  => now(),
                 'updated_at'  => now(),
             ],
+            [
+                'title'       => 'Vue Shirt',
+                'slug'        => str_slug('Vue Shirt'),
+                'description' => 'Awesome Vue shirt',
+                'sale'        => true,
+                'gender'      => 'man',
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ],
+            [
+                'title'       => 'Hat',
+                'slug'        => str_slug('Hat'),
+                'description' => 'Black militar Hat',
+                'sale'        => false,
+                'gender'      => 'man',
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ],
         ];
 
         DB::table('products')->insert($products);

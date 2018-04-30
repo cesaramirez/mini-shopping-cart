@@ -11826,6 +11826,10 @@ label.panel-block:hover {
   right: 0;
 }
 
+.pin-l {
+  left: 0;
+}
+
 .m-1 {
   margin: 1rem;
 }

@@ -30,7 +30,13 @@
                 <p class="title is-4">Total: ${{ total }}</p>
             </div>
             <div class="flex">
-                <a href="" v-if="user && cart.length > 0" class="button is-info is-block is-large w-half" @click.prevent="checkout(cart)">Checkout</a>
+                <a
+                    href=""
+                    v-if="user && cart.length > 0"
+                    class="button is-info is-block is-large w-half"
+                    @click.prevent="checkout(cart)"
+                    :class="{ 'is-loading': loading }">Checkout
+                </a>
                 <router-link href="" v-else-if="cart.length == 0" class="button is-info is-block is-large w-half" :to="{ name: 'home'}">Add items to cart</router-link>
                 <a href="" v-else class="button is-info is-block is-large w-half" @click.prevent="signIn">Login to Checkout</a>
                 <a
@@ -51,6 +57,11 @@ import { EventBus } from "~/bus.js";
 
 export default {
   name: "Cart",
+  data() {
+    return {
+      loading: false
+    };
+  },
   computed: {
     ...mapGetters({
       cart: "cart/cart",
@@ -67,16 +78,24 @@ export default {
       EventBus.$emit("sign-in", true);
     },
     async checkout(cart) {
-      const total = this.total;
-      await axios.post("/api/v1/checkout", { cart, total });
-      this.$store.dispatch(
-        "noti",
-        {
-          message: "Your purchase has been processed, please check your email!",
-          type: "is-success"
-        },
-        { root: true }
-      );
+      try {
+        this.loading = true;
+        const total = this.total;
+        await axios.post("/api/v1/checkout", { cart, total });
+        this.$store.dispatch(
+          "noti",
+          {
+            message:
+              "Your purchase has been processed, please check your email!",
+            type: "is-success"
+          },
+          { root: true }
+        );
+      } catch (error) {
+        console.log(error);
+      } finally {
+        this.loading = false;
+      }
     }
   }
 };
