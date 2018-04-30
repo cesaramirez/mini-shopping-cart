@@ -9,7 +9,7 @@
 * Pages with custom layouts
 * Login, register
 * Authentication with JWT
-* Bulma + Material Icons
+* [Bulma](https://bulma.io/)
 
 ## Installation
 
@@ -22,12 +22,12 @@
 * Edit `.env` and set your database connection details
 * `php artisan migrate`
 * `php artisan db:seed`
-* `yarn`
-* `yarn dev`
+* `yarn or npm install`
+* `yarn dev or npm run dev`
 
 ### Note
 
-For sending email I recommend [mailtrap](mailtrap.io) copy username and password and set in `.env`
+For sending email I recommend [mailtrap](https://mailtrap.io) copy username and password and set in `.env`
 Please set this values:
 
 ```bash
