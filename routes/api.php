@@ -23,4 +23,5 @@ $router->namespace('API\V1')
            $router->post('cart', 'CartsController@store');
            $router->delete('cart', 'CartsController@deleleAll');
            $router->delete('cart/{productId}', 'CartsController@destroy');
+           $router->post('checkout', 'CartsController@checkout');
        });

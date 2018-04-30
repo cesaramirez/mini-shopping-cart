@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Cart;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartsResource;
+use App\Mail\OrderShipped;
 use Illuminate\Http\Request;
 
 class CartsController extends Controller
@@ -61,38 +62,9 @@ class CartsController extends Controller
         return new CartsResource($item);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Cart $cart
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cart $cart)
+    public function checkout(Request $request)
     {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Cart $cart
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cart $cart)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Cart                $cart
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Cart $cart)
-    {
+        \Mail::to($request->user())->send(new OrderShipped($request->all()));
     }
 
     /**

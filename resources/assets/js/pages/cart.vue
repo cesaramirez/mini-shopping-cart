@@ -30,7 +30,7 @@
                 <p class="title is-4">Total: ${{ total }}</p>
             </div>
             <div class="flex">
-                <a href="" v-if="user" class="button is-info is-block is-large w-half">Checkout</a>
+                <a href="" v-if="user" class="button is-info is-block is-large w-half" @click.prevent="checkout(cart)">Checkout</a>
                 <a href="" v-else class="button is-info is-block is-large w-half" @click.prevent="signIn">Login to Checkout</a>
                 <a
                     href=""
@@ -63,6 +63,10 @@ export default {
     }),
     signIn() {
       EventBus.$emit("sign-in", true);
+    },
+    async checkout(cart) {
+      const total = this.total;
+      await axios.post("/api/v1/checkout", { cart, total });
     }
   }
 };
