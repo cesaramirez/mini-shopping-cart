@@ -38059,6 +38059,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -38070,6 +38080,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   components: {
     Login: __WEBPACK_IMPORTED_MODULE_3__components_Login___default.a,
     Register: __WEBPACK_IMPORTED_MODULE_4__components_Register___default.a
+  },
+  data: function data() {
+    return {
+      burger: false,
+      navbar: false
+    };
   },
   mounted: function mounted() {
     this.getCart();
@@ -38112,7 +38128,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       }
 
       return logout;
-    }()
+    }(),
+    showMenu: function showMenu() {
+      this.burger = !this.burger;
+    }
   })
 });
 
@@ -38399,133 +38418,162 @@ var render = function() {
               "router-link",
               { staticClass: "navbar-item", attrs: { to: { name: "home" } } },
               [_vm._v("\n                Acme Company\n            ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "navbar-burger burger",
+                class: { "is-active": _vm.burger },
+                attrs: { "data-target": "navMenu" },
+                on: { click: _vm.showMenu }
+              },
+              [
+                _c("span"),
+                _vm._v(" "),
+                _c("span"),
+                _vm._v(" "),
+                _c("span"),
+                _vm._v(" "),
+                _c("span", {
+                  staticClass: "badge is-badge-danger mt-px",
+                  attrs: { "data-badge": _vm.count }
+                })
+              ]
             )
           ],
           1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "navbar-menu" }, [
-          _c(
-            "div",
-            { staticClass: "navbar-end" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "navbar-item mx-2",
-                  attrs: { to: { name: "cart" } }
-                },
-                [
-                  _c("span", { staticClass: "mx-1" }, [
-                    _vm._v("$" + _vm._s(_vm.total))
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass: "badge is-badge-danger",
-                      attrs: { "data-badge": _vm.count }
-                    },
-                    [_c("i", { staticClass: "fas fa-shopping-cart fa-lg" })]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _vm.user
-                ? _c(
-                    "div",
-                    { staticClass: "navbar-item has-dropdown is-hoverable" },
-                    [
-                      _c("a", {
-                        staticClass: "navbar-link",
-                        domProps: { textContent: _vm._s(_vm.user.name) }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "navbar-dropdown is-boxed" }, [
-                        _c("a", { staticClass: "navbar-item" }, [
-                          _vm._v(
-                            "\n                            Dashboard\n                        "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("a", { staticClass: "navbar-item" }, [
-                          _vm._v(
-                            "\n                            Profile\n                        "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("a", { staticClass: "navbar-item" }, [
-                          _vm._v(
-                            "\n                            Settings\n                        "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("hr", { staticClass: "navbar-divider" }),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "navbar-item",
-                            attrs: { href: "" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.logout($event)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                            Logout\n                        "
-                            )
-                          ]
-                        )
-                      ])
-                    ]
-                  )
-                : [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "navbar-item",
-                        attrs: { target: "_blank", href: "" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.signIn($event)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Sign In\n                    "
-                        )
-                      ]
-                    ),
+        _c(
+          "div",
+          { staticClass: "navbar-menu", class: { "is-active": _vm.burger } },
+          [
+            _c(
+              "div",
+              { staticClass: "navbar-end" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "navbar-item mx-2",
+                    attrs: { to: { name: "cart" } }
+                  },
+                  [
+                    _c("span", { staticClass: "mx-1" }, [
+                      _vm._v("$" + _vm._s(_vm.total))
+                    ]),
                     _vm._v(" "),
                     _c(
-                      "a",
+                      "span",
                       {
-                        staticClass: "navbar-item",
-                        attrs: { target: "_blank", href: "" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.signUp($event)
-                          }
-                        }
+                        staticClass: "badge is-badge-danger",
+                        attrs: { "data-badge": _vm.count }
                       },
-                      [
-                        _vm._v(
-                          "\n                        Sign Up\n                    "
-                        )
-                      ]
+                      [_c("i", { staticClass: "fas fa-shopping-cart fa-lg" })]
                     )
                   ]
-            ],
-            2
-          )
-        ])
+                ),
+                _vm._v(" "),
+                _vm.user
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "navbar-item has-dropdown is-hoverable",
+                        class: { "is-active": _vm.navbar }
+                      },
+                      [
+                        _c("a", {
+                          staticClass: "navbar-link",
+                          domProps: { textContent: _vm._s(_vm.user.name) }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "navbar-dropdown is-boxed" }, [
+                          _c("a", { staticClass: "navbar-item" }, [
+                            _vm._v(
+                              "\n                            Dashboard\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("a", { staticClass: "navbar-item" }, [
+                            _vm._v(
+                              "\n                            Profile\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("a", { staticClass: "navbar-item" }, [
+                            _vm._v(
+                              "\n                            Settings\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("hr", { staticClass: "navbar-divider" }),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "navbar-item",
+                              attrs: { href: "" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.logout($event)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Logout\n                        "
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    )
+                  : [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          attrs: { target: "_blank", href: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.signIn($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Sign In\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          attrs: { target: "_blank", href: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.signUp($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Sign Up\n                    "
+                          )
+                        ]
+                      )
+                    ]
+              ],
+              2
+            )
+          ]
+        )
       ]),
       _vm._v(" "),
       _c("login"),

@@ -5,8 +5,18 @@
                 <router-link class="navbar-item" :to="{name: 'home'}">
                     Acme Company
                 </router-link>
+                <div
+                    class="navbar-burger burger"
+                    @click="showMenu"
+                    :class="{ 'is-active': burger }"
+                    data-target="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span class="badge is-badge-danger mt-px" :data-badge="count"></span>
+                </div>
             </div>
-            <div class="navbar-menu">
+            <div class="navbar-menu" :class="{'is-active': burger }">
                 <div class="navbar-end">
                     <router-link :to="{name: 'cart'}" class="navbar-item mx-2">
                         <span class="mx-1">${{ total }}</span>
@@ -14,7 +24,7 @@
                             <i class="fas fa-shopping-cart fa-lg"></i>
                         </span>
                     </router-link>
-                    <div v-if="user" class="navbar-item has-dropdown is-hoverable">
+                    <div v-if="user" class="navbar-item has-dropdown is-hoverable" :class="{ 'is-active': navbar }">
                         <a class="navbar-link" v-text="user.name" />
                         <div class="navbar-dropdown is-boxed">
                             <a class="navbar-item">
@@ -60,6 +70,10 @@ export default {
     Login,
     Register
   },
+  data: () => ({
+    burger: false,
+    navbar: false
+  }),
   mounted() {
     this.getCart();
   },
@@ -83,6 +97,9 @@ export default {
     },
     async logout() {
       await this.$store.dispatch("auth/logout");
+    },
+    showMenu() {
+      this.burger = !this.burger;
     }
   }
 };
